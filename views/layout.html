@@ -1,0 +1,59 @@
+<!doctype html>
+
+<html lang = "fr">
+
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name='viewport' content="width=device-width, initial-scale=1">
+        <title>Communes de France</title>
+        <link href="/css/bootstrap.min.css" rel='stylesheet'>
+
+    </head>
+
+
+    <body>
+        
+        <img src = 'uploads/chambord.jpg' style = 'width : 100%; height : 100%; top : 0%; left : 0%; position : fixed; z-index : 0;'>
+        
+        <div class = 'container' style = 'background-color : rgba(255,255,255,0.75); position : relative; z-index : 2; top : 0%; bottom : 0%; margin-bottom: 0%;'>
+            
+            <div style = 'display : flex; justify-content : flex-end;' id = 'auth'>
+                {%if user === undefined %}
+                <a href = '/authentification/login' id = 'login'>
+                    <span style = 'background-color : deepskyblue' class = 'badge badge-secondary'>Se connecter</span>
+                </a>
+                <span style = 'width : 10px'></span>
+                <a href = '/authentification/register' id = 'register'>
+                    <span style = 'background-color : deepskyblue' class = 'badge badge-secondary'>Créer un compte</span>
+                </a>
+                {% else %}
+                <span><strong>Bienvenue, {{user.username}}</strong></span>
+                <span style = 'width : 1%'></span>
+                <a href = '/authentification/logout'>
+                    <span style = 'background-color : deepskyblue' class = 'badge badge-secondary'>Déconnexion</span>
+                </a>
+                {% endif %}
+            </div>
+
+            <br>
+            <h1 class = 'text-center'><a href = "/">Communes de France</a></h1>
+            <br>
+            {% block content %}{% endblock %}    
+            <hr>
+            <div class = 'text-center' style = 'bottom : 0%;'>
+
+                Copyright Aurélien Pasteau 2018
+
+            </div>
+            
+            <br>
+
+        </div>
+        
+        <script src = '/scripts/villes/layout.js'></script>
+
+    </body>
+
+</html>

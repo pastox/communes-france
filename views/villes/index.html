@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block content %} 
+
+    <h2>Chercher une ville</h2>
+    <br>
+    <form method = 'POST' action = '/' id = 'form'>
+      <div class="form-row" style = 'display : flex; justify-content : space-between'>
+        <div class="col-7" id = 'inputBlock'>
+            <input type="text" id = 'name' name = 'name' class="form-control" placeholder="{{message}}" autocomplete='off'>
+            <div id="suggestions" class="form-control" style = 'height : 250px; overflow : scroll'></div>
+        </div>
+        <div class="col">
+          <input id = 'submit' type="submit" class = 'btn btn-primary' value = "Chercher">
+        </div>
+      </div>
+    </form>
+
+    <hr>
+
+    <h2>Fonctionnement du site</h2>
+    <div class = 'text-center' style = 'border-radius : 2%;'>
+        <p>Ce site a pour but de recenser des informations et des avis sur les communes de France. Ainsi, toutes les informations disponibles, images ou commentaires viennent de vous, les utilisateurs du site. Pour vous rendre sur la page d'une commune, tapez le nom de la commune dans la barre de recherche ci-dessus, et sélectionnez la commune désirée parmi les propositions avant de valider. <strong>Attention : </strong> il ne faut pas taper trop vite, sinon l'autocomplétion fonctionne mal et votre commune ne sera pas présente parmi les propositions. Une fois sur la page souhaitée, vous pouvez consulter la météo de la commune en question, ajouter des photos, ainsi que des commentaires ou conseils de visites pour les autres utilisateurs. Bien sûr, afin de contribuer à l'élargissement du contenu du site, il faut être connecté. Si vous n'avez pas encore de compte, vous pouvez en créer un via le bouton correspondant en haut de la page. Bonne navigation!</p>
+    </div>
+
+    <hr>
+
+    <h2>Commentaires généraux</h2>
+    {%if user != undefined%}
+        <form method = 'POST' action = '/comment'>
+            <div class = 'form-group'>
+                <label for = 'title'>Titre du commentaire</label>
+                <input type = 'text' name = 'title' id = 'title' class = 'form-control' required>
+            </div>
+            <div class = 'form-group'>
+                <label for = 'content'>Ecrivez votre commentaire ici</label>
+                <textarea class = 'form-control' name = 'content' id = 'content' required></textarea>
+            </div>
+            <input type = 'submit' value = 'Envoyer' class = 'btn btn-primary'>
+        </form>
+    {%else%}
+        <h6>Pour ajouter un commentaire, connnectez-vous ou créez un compte.</h6>
+    {%endif%}
+    
+    <br>
+    <div id = 'commentaires'>
+        {%for commentaire in commentaires%}
+            <div class = 'card'>
+                <div class = 'card-header' style = 'display : flex; justify-content: space-between'>
+                    <h4>{{commentaire.title}}</h4>
+                    <div>
+                        <h6>Publié par {{commentaire.username}}</h6>
+                        <h6>{{commentaire.date}}</h6>
+                    </div>
+                </div>
+                <div class = 'card-body'>
+                    {{commentaire.content}}
+                </div>
+            </div>
+            <br>
+        {%endfor%}
+    </div>
+
+    <script src = '/scripts/villes/ajax.js'></script>
+    <script src = '/scripts/villes/index.js'></script>
+
+{% endblock %}

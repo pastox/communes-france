@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content %} 
+
+    <h2>{{title}}</h2>
+    <hr>
+    <form method = 'POST' action = '/authentification/login'>
+        <div class = 'form-group'>
+            <label for='username'>Pseudo :</label>
+            <input type = 'text' name = 'username' id = 'username' class = 'form-control' required>
+        </div>
+        <div class = 'form-group'>
+            <label for='password'>Mot de passe : </label>
+            <input type = 'password' name = 'password' id = 'password' class = 'form-control' required>
+        </div>
+        <div style = 'display : none'><input type = 'text' name = 'url' id = 'url' value = {{url}}></div>
+        <p id = 'message' style = 'color : red'>{{message}}</p>
+        <input type = 'submit' class = 'btn btn-primary' value = 'Se connecter'>
+        
+    </form>
+
+    <script src = '/scripts/authentification/auth.js'></script>
+
+{% endblock %}

@@ -1,0 +1,161 @@
+{% extends "layout.html" %}
+
+{% block content %} 
+
+    <h2>{{ville.name}}</h2>
+    <hr>
+    <h3>Bulletin météo</h3>
+    <h4 class = 'text-center'>Aujourd'hui</h4>
+    
+    <div id = 'today' style='display : flex; justify-content : space-between'>
+        <span style = 'display : flex; justify-content : center; background-color: deepskyblue; border-radius: 15%;'>
+            <img src = {{meteo.fcst_day_0.hourly_data.8H00.ICON}}>
+            <div style = 'display : flex; flex-direction : column'>
+                <strong>08:00</strong>
+                <p>{{meteo.fcst_day_0.hourly_data.8H00.TMP2m}}°C</p>
+            </div>
+        </span>
+        <span style = 'display : flex; justify-content : center; background-color: deepskyblue; border-radius: 15%;'>
+            <img src = {{meteo.fcst_day_0.hourly_data.11H00.ICON}}>
+            <div style = 'display : flex; flex-direction : column'>
+                <strong>11:00</strong>
+                <p>{{meteo.fcst_day_0.hourly_data.11H00.TMP2m}}°C</p>
+            </div>
+        </span>
+        <span style = 'display : flex; justify-content : center; background-color: deepskyblue; border-radius: 15%;'>
+            <img src = {{meteo.fcst_day_0.hourly_data.14H00.ICON}}>
+            <div style = 'display : flex; flex-direction : column'>
+                <strong>14:00</strong>
+                <p>{{meteo.fcst_day_0.hourly_data.14H00.TMP2m}}°C</p>
+            </div>
+        </span>
+        <span style = 'display : flex; justify-content : center; background-color: deepskyblue; border-radius: 15%;'>
+            <img src = {{meteo.fcst_day_0.hourly_data.17H00.ICON}}>
+            <div style = 'display : flex; flex-direction : column'>
+                <strong>17:00</strong>
+                <p>{{meteo.fcst_day_0.hourly_data.17H00.TMP2m}}°C</p>
+            </div>
+        </span>
+        <span style = 'display : flex; justify-content : center; background-color: deepskyblue; border-radius: 15%;'>
+            <img src = {{meteo.fcst_day_0.hourly_data.20H00.ICON}}>
+            <div style = 'display : flex; flex-direction : column'>
+                <strong>20:00</strong>
+                <p>{{meteo.fcst_day_0.hourly_data.20H00.TMP2m}}°C</p>
+            </div>
+        </span>
+        <span style = 'display : flex; justify-content : center; background-color: deepskyblue; border-radius: 15%;'>
+            <img src = {{meteo.fcst_day_0.hourly_data.23H00.ICON}}>
+            <div style = 'display : flex; flex-direction : column'>
+                <strong>23:00</strong>
+                <p>{{meteo.fcst_day_0.hourly_data.23H00.TMP2m}}°C</p>
+            </div>
+        </span>
+    </div>
+    <br>
+    <h4 class = 'text-center'>Demain</h4>
+    <div id = 'tomorrow' style='display : flex; justify-content : space-between'>
+         <span style = 'display : flex; justify-content : center; background-color: deepskyblue; border-radius: 15%;'>
+            <img src = {{meteo.fcst_day_1.hourly_data.8H00.ICON}}>
+            <div style = 'display : flex; flex-direction : column'>
+                <strong>08:00</strong>
+                <p>{{meteo.fcst_day_1.hourly_data.8H00.TMP2m}}°C</p>
+            </div>
+        </span>
+        <span style = 'display : flex; justify-content : center; background-color: deepskyblue; border-radius: 15%;'>
+            <img src = {{meteo.fcst_day_1.hourly_data.11H00.ICON}}>
+            <div style = 'display : flex; flex-direction : column'>
+                <strong>11:00</strong>
+                <p>{{meteo.fcst_day_1.hourly_data.11H00.TMP2m}}°C</p>
+            </div>
+        </span>
+        <span style = 'display : flex; justify-content : center; background-color: deepskyblue; border-radius: 15%;'>
+            <img src = {{meteo.fcst_day_1.hourly_data.14H00.ICON}}>
+            <div style = 'display : flex; flex-direction : column'>
+                <strong>14:00</strong>
+                <p>{{meteo.fcst_day_1.hourly_data.14H00.TMP2m}}°C</p>
+            </div>
+        </span>
+        <span style = 'display : flex; justify-content : center; background-color: deepskyblue; border-radius: 15%;'>
+            <img src = {{meteo.fcst_day_1.hourly_data.17H00.ICON}}>
+            <div style = 'display : flex; flex-direction : column'>
+                <strong>17:00</strong>
+                <p>{{meteo.fcst_day_1.hourly_data.17H00.TMP2m}}°C</p>
+            </div>
+        </span>
+        <span style = 'display : flex; justify-content : center; background-color: deepskyblue; border-radius: 15%;'>
+            <img src = {{meteo.fcst_day_1.hourly_data.20H00.ICON}}>
+            <div style = 'display : flex; flex-direction : column'>
+                <strong>20:00</strong>
+                <p>{{meteo.fcst_day_1.hourly_data.20H00.TMP2m}}°C</p>
+            </div>
+        </span>
+        <span style = 'display : flex; justify-content : center; background-color: deepskyblue; border-radius: 15%;'>
+            <img src = {{meteo.fcst_day_1.hourly_data.23H00.ICON}}>
+            <div style = 'display : flex; flex-direction : column'>
+                <strong>23:00</strong>
+                <p>{{meteo.fcst_day_1.hourly_data.23H00.TMP2m}}°C</p>
+            </div>
+        </span>
+    </div> 
+    <hr>
+    <h3>Galerie</h3>
+    {%if user != undefined%}
+        <form method = 'POST' action = '/{{ville.insee_code}}/image' enctype = "multipart/form-data" multiple>
+            <span class = form-group>    
+                <label for = 'image'>Ajouter une photo</label>
+                <input type = 'file' name = 'file' required>
+                <br>
+                <input type = 'submit' class = 'btn btn-primary'>
+            </span>
+        </form>
+    {%else%}
+        <h6>Pour ajouter des photos à la galerie, connnectez-vous ou créez un compte.</h6>
+    {%endif%}
+    <br>
+    <div id = 'images'>
+        {%for image in images%}
+            <div style = 'display : flex; flex-direction : column; align-items : center'>
+                <p><img src = '/uploads/{{image.file}}' alt = {{ville.name}} style = 'border-radius : 3%'></p>
+                <h6>Ajoutée par {{image.username}}</h6>
+                <h6>{{image.date}}</h6>
+            </div>
+            <br>
+        {%endfor%}
+    </div>
+    <hr>
+    <h3>Commentaires</h3>
+    {%if user != undefined%}
+        <form method = 'POST' action = '/{{ville.insee_code}}/comment'>
+            <div class = 'form-group'>
+                <label for = 'title'>Titre du commentaire</label>
+                <input type = 'text' name = 'title' id = 'title' class = 'form-control' required>
+            </div>
+            <div class = 'form-group'>
+                <label for = 'content'>Ecrivez votre commentaire ici</label>
+                <textarea class = 'form-control' name = 'content' id = 'content' required></textarea>
+            </div>
+            <input type = 'submit' value = 'Envoyer' class = 'btn btn-primary'>
+        </form>
+    {%else%}
+        <h6>Pour ajouter un commentaire, connnectez-vous ou créez un compte.</h6>
+    {%endif%}
+    
+    <br>
+    <div id = 'commentaires'>
+        {%for commentaire in commentaires%}
+            <div class = 'card'>
+                <div class = 'card-header' style = 'display : flex; justify-content: space-between'>
+                    <h4>{{commentaire.title}}</h4>
+                    <div>
+                        <h6>Publié par {{commentaire.username}}</h6>
+                        <h6>{{commentaire.date}}</h6>
+                    </div>
+                </div>
+                <div class = 'card-body'>
+                    {{commentaire.content}}
+                </div>
+            </div>
+            <br>
+        {%endfor%}
+    </div>
+{% endblock %}
