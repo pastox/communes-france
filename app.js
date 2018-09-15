@@ -57,6 +57,6 @@ nunjucks.configure('views', {
 app.use('/', require('./routes/villes'));
 app.use('/authentification', require('./routes/authentification'));
 
-console.log("Application Villes_de_France lancée sur le port 3001");
+console.log("Application Villes_de_France lancée");
 
-app.listen(80);
+app.listen(process.env.PORT);
