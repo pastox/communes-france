@@ -17,7 +17,7 @@ var upload = multer({
 });
 
 //Connexion à la base de données
-mongoose.connect("mongodb://pastox:rugby+drums5@ds125272.mlab.com:25272/communes-france");
+mongoose.connect("mongodb://pastox:rugby%2Bdrums5@ds125272.mlab.com:25272/communes-france");
 
 var app = express();
 
